@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Flash player</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="player.js"></script>
+    <noscript>Please enable the Javascript.</noscript>
+  </head>
+  <body>
+    <div id="ruffle" class="gameloc"></div>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script id="gabe">
+      function getParam(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      swfobject.embedSWF(getParam("src") || "https://ruffle.rs/demo/logo-anim.swf", getParam("type") || 'ruffle', getParam("width") || 800, getParam("height") || 600);
+    </script>
+  </body>
+</html>
